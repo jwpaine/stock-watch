@@ -1,0 +1,22 @@
+{
+    "aws" : {
+        "region": "",
+        "accessKeyId": "",
+        "secretAccessKey": ""
+    },
+    "cognito" : {
+        "region": "",
+        "cognitoUserPoolId": "",
+        "tokenUse": "",
+        "tokenExpiration": 3600000
+    },
+    "redis" : {
+        "host": "127.0.0.1",
+        "post" : "6379",
+        "password" : "secret"
+
+    }, 
+    "iex" : {
+        "secretApiKey" : ""
+    }
+}
