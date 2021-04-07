@@ -57,15 +57,15 @@ authenticatedRoute.get("/stocks", function (req, res, next) {
 	let customer = new Customer(res.locals.user.email)
 
 	customer.stocks().get(dynamodb, function (err, r) {
-		if (err) { 
+		if (err) {
 			console.log(`err`)
-			return res.status(502).send(err)
+
 		}
-		console.log(r)
 		// no stocks for account
-		if(r.stocks.length == 0) {
+		if (r.length == 0) {
 			return res.send(r)
 		}
+
 		let batch = ''
 		r.stocks.map(stock => {
 			batch += stock.symbol
@@ -133,7 +133,28 @@ authenticatedRoute.post("/stocks", function (req, res, next) {
 	}
 
 	iex.quote(req.body.symbol, function (err, quote) {
-		if (!err) {
+		if (err) {
+			return res.status(400).send(err)
+		}
+		customer.stocks().get(dynamodb, function (err, r) {
+			if (err) {
+				return res.status(502).send(err)
+			}
+			// if stock already added, return error
+			let duplicate = false;
+			r.stocks.map(stock => {
+				if (req.body.symbol == stock.symbol) {
+					duplicate = true;
+					return
+				}
+			})
+			if (duplicate) {
+				console.log(`Already watching ${req.body.symbol}`)  
+				return res.status(400).send({ 
+					'errors': [`Already watching ${req.body.symbol}`]
+				})
+			}
+
 			console.log('saving: ' + JSON.stringify(quote))
 			customer.stocks().add(docClient, [quote], function (err, r) {
 				if (err) {
@@ -143,9 +164,7 @@ authenticatedRoute.post("/stocks", function (req, res, next) {
 				console.log(`success`)
 				res.send(r)
 			})
-			return
-		}
-		return res.status(400).send(err)
+		})
 	})
 })
 
