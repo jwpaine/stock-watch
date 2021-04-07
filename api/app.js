@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const Redis = require("redis");
 const app = express()
 const authenticatedRoute = express.Router();
-const port = 8080
+const port = 80
 
 const Customer = require('./dynamo/customer')
 const Iex = require('./iexcloud')
@@ -59,13 +59,13 @@ authenticatedRoute.get("/stocks", function (req, res, next) {
 	customer.stocks().get(dynamodb, function (err, r) {
 		if (err) { 
 			console.log(`err`)
-
+			return res.status(502).send(err)
 		}
+		console.log(r)
 		// no stocks for account
-		if(r.length == 0) {
+		if(r.stocks.length == 0) {
 			return res.send(r)
 		}
-
 		let batch = ''
 		r.stocks.map(stock => {
 			batch += stock.symbol
