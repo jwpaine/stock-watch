@@ -62,8 +62,8 @@ authenticatedRoute.get("/stocks", function (req, res, next) {
 
 		}
 		// no stocks for account
-		if (r.length == 0) {
-			return res.send(r)
+		if (r.stocks.length == 0) {
+			return res.send(r) 
 		}
 
 		let batch = ''
