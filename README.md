@@ -26,5 +26,5 @@ I built a REST API using nodejs + express hosted from an EC2 instance. AWS Cogni
 
 ## Usage
 
-Sign in with demo credentials: mdibound@gmail.com, ASUDemo1!, or create your own account! Once logged in, navigate to "My Stocks", enter a symbol, and hit "ADD STOCK". Stocks may also be removed from the portfolio.
+Sign in with demo credentials (provided via email), or create your own account! Once logged in, navigate to "My Stocks", enter a symbol, and hit "ADD STOCK". Stocks may also be removed from the portfolio.
 
