@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {Link} from "react-router-dom";
 
 
-
 const Wrapper = styled.section`
 
 		background: lightgray;
@@ -16,7 +15,11 @@ const Wrapper = styled.section`
 		img {
 		    height: 100px;
 		}
+
 	`;
+
+
+
 const renderDelete = (removeStock, index) => {
     if (removeStock) {
         return (
@@ -26,21 +29,37 @@ const renderDelete = (removeStock, index) => {
 }
 
 const Stock = (props) => {
+
+    
+
+   
+
+    let priceAll = props.priceAll
+
+    console.log(`priceall: ${priceAll}`) 
+    console.log(`stock price as a % of total: ${props.price/priceAll*100}`)
+    let width = props.price/priceAll*100
+ 
+    const Bar = styled.section`
+        height: 20px;
+     
+         width: ${width}%; 
+         max-width: 100%;  
+        background: lightblue; 
+    `; 
  
     return(
         <div className="item">
-            {/* <div className="img-wrap"> */}
-               
-                    {/* <img src={`${props.image}`} /> */}
-              
-            {/* </div> */} 
-            <div className="details">
-             
-                <label><b>Symbol: </b>{props.symbol}</label> 
-                <label><b>Price: </b>{props.price} </label>  
-
-                { renderDelete(props.removeStock, props.index) }
-            </div>
+            
+                <div className="details">
+                
+                    <label><b>Symbol: </b>{props.symbol}</label> 
+                    
+                        <Bar>{props.price} </Bar> 
+                   
+                    { renderDelete(props.removeStock, props.index) }
+                </div>
+            
         </div>
     )
 }

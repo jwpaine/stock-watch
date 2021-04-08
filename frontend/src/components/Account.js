@@ -128,11 +128,17 @@ renderStocks= customer => {
 
 		console.log(`customer -->: ${customer}`)
 
+		let priceAll = 0;
+
+		customer.stocks.map( (stock, index) => {
+			priceAll += stock.price;
+		});
+
 		return (
 
 				<div>
 					{customer.stocks.map( (stock, index) => (
-						 <Stock key={index} index={index} removeStock={this.removeStock} symbol={stock.symbol} price={stock.price}/>
+						 <Stock key={index} index={index} removeStock={this.removeStock} symbol={stock.symbol} price={stock.price} priceAll={priceAll} />
 					))}	
 				</div>
 

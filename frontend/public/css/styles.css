@@ -729,7 +729,7 @@ select {
 }
 
 .item .details {
-  min-width: 100px;
+  min-width: 245px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

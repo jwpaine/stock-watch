@@ -8,7 +8,7 @@ SparkyStocks is a full-stack solution built on AWS.
 
 ### Frontend 
 
-Built with React and hosted directly from an S3 bucket. 
+Built with React and Scss, and hosted directly from an S3 bucket. 
 
 ### Backend 
 
@@ -17,3 +17,4 @@ I built a REST API using nodejs + express hosted from an EC2 instance. AWS Cogni
 ![architecture.png](architecture.png)
 
 ## Usage
+

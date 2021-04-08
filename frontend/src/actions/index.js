@@ -30,8 +30,8 @@ var poolData = {
 
 var cognitoUserr;
 
-let api_url = 'http://localhost'
-// let api_url = 'https://api.clothoak.com'  
+//let api_url = 'http://localhost'
+let api_url = 'https://api.sparkystocks.com'   
 
 export const signup = (formProps, callback) => async dispatch => {
 
