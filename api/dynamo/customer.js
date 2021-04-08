@@ -98,7 +98,7 @@ Customer.prototype.stocks = function () {
 					callback(null, customer)
 					return
 				}
-				callback(null, []);
+				callback(null, {'stocks' : []});
 			})
 		}
 	}
